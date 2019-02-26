@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>results</title>
+</head>
+<body>
+
+    <h1>Guess the roll</h1>
+    <ul>
+        <li>You rolled <span th:text="${random}"></span></li>
+        <li>You guessed <span th:text="${n}"></span></li>
+        <li th:if="${guess}">You guessed right!</li>
+        <li th:if="${not guess}">You guessed wrong</li>
+
+    </ul>
+
+
+</body>
+</html>
