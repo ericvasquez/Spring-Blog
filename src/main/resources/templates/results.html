@@ -5,14 +5,12 @@
     <title>results</title>
 </head>
 <body>
-
-    <h1>Guess the roll</h1>
+    <div th:replace="partials :: navbar" ></div>
     <ul>
         <li>You rolled <span th:text="${random}"></span></li>
         <li>You guessed <span th:text="${n}"></span></li>
         <li th:if="${guess}">You guessed right!</li>
         <li th:if="${not guess}">You guessed wrong</li>
-
     </ul>
 
 
