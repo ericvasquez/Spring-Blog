@@ -1,17 +1,18 @@
 package com.codeup.blog;
 
+import models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import repositories.PostRepository;
 
 @Controller
 public class PostController {
+   // private final PostRepository postDao;
 
- private final PostRepository postDao;
-
- public PostController(PostRepository postDao){
-     this.postDao = postDao;
- }
+// public PostController(PostRepository postDao){
+//     this.postDao = postDao;
+// }
 
  //shows all posts
     @GetMapping("/posts")
@@ -53,9 +54,7 @@ public String create(
 ){
 
     Post post = new Post(title, body);
-
     postDao.save(post);
-
     return "redirect:/posts";
 
 }
@@ -75,12 +74,9 @@ public String create(
             @RequestParam(name = "body") String body,
             Model model) {
 
-
-
         Post post = postDao.findOne(id);
         post.setTitle(title);
         post.setBody(body);
-
         postDao.save(post);
 
         return "redirect:/posts/" + id;
