@@ -14,7 +14,7 @@ public class Category {
     @Column(nullable = false)
     private String name;
 
-    @@ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories")
     private List<Post> posts;
 
     public Category(String name, List<Post> posts) {

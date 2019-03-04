@@ -8,11 +8,17 @@ import repositories.PostRepository;
 
 @Controller
 public class PostController {
-   // private final PostRepository postDao;
+    private final PostRepository postDao;
 
-// public PostController(PostRepository postDao){
-//     this.postDao = postDao;
-// }
+//    private final EmailService emailService;
+//    public postController(EmailService emailService){
+//        this.emailService = emailService;
+//    }
+
+
+ public PostController(PostRepository postDao){
+     this.postDao = postDao;
+ }
 
  //shows all posts
     @GetMapping("/posts")
@@ -39,14 +45,7 @@ public String all(Model model){
 
     }
 //save the new post to the database
- //   same URL that shows form is the same as creates
-//    @PostMapping("/posts/create")
-//    @ResponseBody
-//    public String create(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-//     Post post = new Post(title, body);
-//     postDao.save(post);
-//        return "redirect:/posts";
-//    }
+
 @PostMapping("/posts/create")
 public String create(
         @RequestParam(name = "title") String title,

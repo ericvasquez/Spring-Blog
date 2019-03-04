@@ -5,15 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name="posts")
 public class Post {
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private long id;
 
-    @Column(nullable = false, length = 128)
+    @Column(nullable = false, length = 100)
     private String title;
 
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 250)
     private String body;
 
     @OneToOne
@@ -25,6 +24,15 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Post(){
+
+    }
+
+    public Post(String title, String body){
+        this.title = title;
+        this.body = body;
     }
 
     public Post(long id, String title, String body, User user) {

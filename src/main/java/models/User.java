@@ -29,7 +29,7 @@ public class User {
         this.email = email;
     }
 
-    public User(String username, String password, String email, int id){
+    public User(String username, String password, String email, long id){
         this.username = username;
         this.password = password;
         this.email = email;

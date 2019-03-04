@@ -1,18 +1,23 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
     <meta charset="UTF-8" />
-    <title>Home</title>
-    <!-- include stylesheets, etc here -->
+    <title>Title</title>
 </head>
 <body>
-    <nav th:fragment="navbar">
-        <!-- awesome navbar goes here -->
-    </nav>
-    <body>
-        <div th:fragment="footer">
-            &copy; 2016 Footer
-        </div>
-    </body>
+
+    <th:block th:fragment="navbar">
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/quotes}">Show All Quotes</a></li>
+                <li><a th:href="@{/quotes/random}">Random Quote</a></li>
+                <li><a th:href="@{/posts}">All Blog Posts</a></li>
+                <li><a th:href="@{/posts/create}">Write a New Blog Post</a></li>
+            </ul>
+        </nav>
+    </th:block>
+
 </body>
 </html>
