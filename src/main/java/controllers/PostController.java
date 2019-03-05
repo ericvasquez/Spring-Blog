@@ -1,4 +1,4 @@
-package com.codeup.blog;
+package controllers;
 
 import Services.EmailService;
 import models.Category;
@@ -17,10 +17,10 @@ import java.util.List;
 
 @Controller
 public class PostController {
-    private final PostRepository postDao;
-    public PostController(PostRepository postDao){
-        this.postDao = postDao;
-    }
+    @Autowired
+    private  PostRepository postDao;
+
+
 
     @Autowired
     private EmailService emailService;
