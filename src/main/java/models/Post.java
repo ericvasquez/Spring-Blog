@@ -18,19 +18,12 @@ public class Post {
     @OneToOne
     private User user;
 
-  @ManyToMany
-          (cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "posts_categories", joinColumns = {@JoinColumn(name = "post_id")},
   inverseJoinColumns = {@JoinColumn(name = "category_id")})
+  private List<Category> categories;
 
-private List<Category> categories;
 
-    public Post(String title, String body, User user, List<Category> categories) {
-        this.title = title;
-        this.body = body;
-        this.user = user;
-        this.categories = categories;
-    }
 
     public List<Category> getCategories() {
         return categories;
@@ -41,25 +34,23 @@ private List<Category> categories;
     }
 
     public Post(){
-
     }
 
-    public Post(String title, String body){
-        this.title = title;
-        this.body = body;
-    }
 
-    public Post(long id, String title, String body, User user) {
+
+    public Post(long id, String title, String body, User user, List<Category> categories) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
+        this.categories = categories;
     }
 
-    public Post(String title, String body, User user) {
+    public Post(String title, String body, User user, List<Category> categories) {
         this.title = title;
         this.body = body;
         this.user = user;
+        this.categories = categories;
     }
 
 
@@ -96,4 +87,6 @@ private List<Category> categories;
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }
