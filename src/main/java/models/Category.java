@@ -1,5 +1,4 @@
 package models;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,14 +16,16 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private List<Post> posts;
 
+    public Category() {
+
+    }
+
     public Category(String name, List<Post> posts) {
         this.name = name;
         this.posts = posts;
     }
 
-    public Category() {
 
-    }
 
     public long getId() {
         return id;

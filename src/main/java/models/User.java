@@ -23,17 +23,18 @@ public class User {
 
     }
 
+
     public User(String username, String password, String email){
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public User(String username, String password, String email, long id){
+    public User(long id, String username, String password, String email){
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.id = id;
     }
 
     public long getId() {

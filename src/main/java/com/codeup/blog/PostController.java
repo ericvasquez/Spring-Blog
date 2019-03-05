@@ -1,19 +1,26 @@
 package com.codeup.blog;
 
+import Services.EmailService;
+import models.Category;
 import models.Post;
+import models.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import repositories.PostRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PostController {
     private final PostRepository postDao;
 
-//    private final EmailService emailService;
-//    public postController(EmailService emailService){
-//        this.emailService = emailService;
-//    }
+  @Autowired
+  private EmailService emailService;
+
 
 
  public PostController(PostRepository postDao){
@@ -49,11 +56,12 @@ public String all(Model model){
 @PostMapping("/posts/create")
 public String create(
         @RequestParam(name = "title") String title,
-        @RequestParam(name = "body") String body
-){
-
-    Post post = new Post(title, body);
-    postDao.save(post);
+        @RequestParam(name = "body") String body){
+    List<Category> categories = new ArrayList<>();
+    User user = new User();
+     Post post = new Post(title, body, new User(), categories);
+    Post savedPost = postDao.save(post);
+    emailService.prepareAndSend(savedPost, "Done", "It's saved");
     return "redirect:/posts";
 
 }
@@ -89,11 +97,12 @@ public String create(
         return "redirect:/posts";
     }
 
-    // show a random post
-    @GetMapping("/posts/random")
-    public String random(Model model) {
-         Post post = postDao.getRandom();
-         model.addAttribute("post", post);
-        return "posts/show";
-    }
+//    // show a random post
+//    @GetMapping("/posts/random")
+//    public String random(Model model) {
+//         Post post = postDao.getRandom();
+//         model.addAttribute("post", post);
+//        return "posts/show";
+//    }
+
 }
