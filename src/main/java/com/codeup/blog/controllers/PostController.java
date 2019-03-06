@@ -1,9 +1,9 @@
-package controllers;
+package com.codeup.blog.controllers;
 
-import Services.EmailService;
-import models.Category;
-import models.Post;
-import models.User;
+import com.codeup.blog.Services.EmailService;
+import com.codeup.blog.models.Category;
+import com.codeup.blog.models.Post;
+import com.codeup.blog.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import repositories.PostRepository;
+import com.codeup.blog.repositories.PostRepository;
 import java.util.ArrayList;
 import java.util.List;
 
