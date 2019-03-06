@@ -7,10 +7,7 @@ import com.codeup.blog.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import com.codeup.blog.repositories.PostRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +15,17 @@ import java.util.List;
 @Controller
 public class PostController {
 //    @Autowired
+private EmailService emailService;
+
     private final PostRepository postDao;
-    public PostController(PostRepository postDao){
+    public PostController(PostRepository postDao, EmailService emailService){
         this.postDao=postDao;
+        this.emailService = emailService;
     }
 
 
 
-    @Autowired
-    private EmailService emailService;
+
 
     @GetMapping("/posts")
     public String all(Model model){
@@ -47,16 +46,25 @@ public class PostController {
         return "posts/create";
     }
 
+//    @PostMapping("/posts/create")
+//       public String create( @RequestParam(name = "title") String title,
+//                @RequestParam(name = "body") String body){
+//            List<Category>categories = new ArrayList<>();
+//            User user = new User();
+//            Post post = new Post(title, body, new User(), categories);
+//            Post savedPost = postDao.save(post);
+//            emailService.prepareAndSend(savedPost, "Done", "Its saved");
+//            return "redirect:/posts";
+//        }
+
     @PostMapping("/posts/create")
-       public String create( @RequestParam(name = "title") String title,
-                @RequestParam(name = "body") String body){
-            List<Category>categories = new ArrayList<>();
-            User user = new User();
-            Post post = new Post(title, body, new User(), categories);
-            Post savedPost = postDao.save(post);
-            emailService.prepareAndSend(savedPost, "Done", "Its saved");
-            return "redirect:/posts";
-        }
+    public String create(@ModelAttribute Post post){
+
+
+  postDao.save(post);
+        emailService.prepareAndSend("email", "Done", "Its saved");
+        return "redirect:/posts";
+    }
 
 
     @GetMapping("/posts/{id}/edit")
