@@ -6,15 +6,20 @@
 
     <div th:replace="fragments/navbar :: navbar"></div>
 
-    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
-        Title:
-        <input th:field="*{title}" />
-        <br />
-        Description:
-        <input th:field="*{body}" />
-        <br />
-        <input type="submit" />
+
+    <form th:action="@{/posts/create}" th:method="post">
+
+        <label for="title">Title: </label>
+
+        <input name="title" id="title" placeholder="New Blog"  />
+
+        <label for="body">Body: </label>
+
+        <textarea name="body" id="body" cols="30" rows="10"></textarea>
+
+        <button type="submit">Save Post</button>
     </form>
+
 
 </body>
 </html>
