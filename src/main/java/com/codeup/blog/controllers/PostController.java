@@ -3,6 +3,7 @@ package com.codeup.blog.controllers;
 import com.codeup.blog.Services.EmailService;
 import com.codeup.blog.models.Category;
 import com.codeup.blog.models.Post;
+import com.codeup.blog.models.PostImage;
 import com.codeup.blog.models.User;
 import com.codeup.blog.repositories.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,26 +50,31 @@ private EmailService emailService;
         return "posts/create";
     }
 
-    @PostMapping("/posts/create")
-       public String create( @RequestParam(name = "title") String title,
-                @RequestParam(name = "body") String body){
-            List<Category>categories = new ArrayList<>();
+
+    //WORKS////////
+    //    @PostMapping("/posts/create")
+//       public String create( @RequestParam(name = "title") String title,
+//                @RequestParam(name = "body") String body){
+//            List<Category>categories = new ArrayList<>();
+//        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User userDB = userDao.findOne(sessionUser.getId());
+//            Post post = new Post(title, body, userDB, categories);
+//            Post savedPost = postDao.save(post);
+//            emailService.prepareAndSend(savedPost, "Done", "Its saved");
+//            return "redirect:/posts";
+//        }
+
+@PostMapping("posts/create")
+public String create(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+        List<Category>categories = new ArrayList<>();
+        List<PostImage>img = new ArrayList<>();
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userDB = userDao.findOne(sessionUser.getId());
-            Post post = new Post(title, body, userDB, categories);
-            Post savedPost = postDao.save(post);
-            emailService.prepareAndSend(savedPost, "Done", "Its saved");
-            return "redirect:/posts";
-        }
-
-//    @PostMapping("/posts/create")
-//    public String create(@ModelAttribute Post post){
-//
-//
-//  postDao.save(post);
-//        emailService.prepareAndSend("email", "Done", "Its saved");
-//        return "redirect:/posts";
-//    }
+        Post post = new Post(title, body, userDB, categories, img);
+        Post savedPost = postDao.save(post);
+        emailService.prepareAndSend(savedPost, "Post with image", "done");
+        return "redirect:/posts";
+}
 
 
     @GetMapping("/posts/{id}/edit")

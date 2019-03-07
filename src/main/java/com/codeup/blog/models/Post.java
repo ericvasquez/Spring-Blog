@@ -23,20 +23,20 @@ public class Post {
   inverseJoinColumns = {@JoinColumn(name = "category_id")})
   private List<Category> categories;
 
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+  private List<PostImage> images;
 
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
 
     public Post(){
     }
 
-
+    public Post(String title, String body, User user, List<Category> categories, List<PostImage> images) {
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.categories = categories;
+        this.images = images;
+    }
 
     public Post(long id, String title, String body, User user, List<Category> categories) {
         this.id = id;
@@ -89,4 +89,19 @@ public class Post {
     }
 
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<PostImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<PostImage> images) {
+        this.images = images;
+    }
 }

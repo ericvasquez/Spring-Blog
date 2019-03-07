@@ -9,9 +9,9 @@
     <th:block th:fragment="navbar">
         <nav>
             <ul>
-                <!--<li sec:authorize="isAuthenticated()">-->
-                    <!--<span th:text="${#authentication.principal.username}"/>-->
-                <!--</li>-->
+                <li sec:authorize="isAuthenticated()">
+                 Username:   <span th:text="${#authentication.principal.username}"/>
+                </li>
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/posts}">All Blog Posts</a></li>
                 <li><a th:href="@{/posts/create}">Write a New Blog Post</a></li>
