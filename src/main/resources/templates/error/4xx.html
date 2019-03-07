@@ -1,19 +1,14 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8"/>-->
-    <!--<title>Ooops, Not Found</title>-->
-<!--</head>-->
-<!--<body>-->
-    <!--<h1>Page not found!!</h1>-->
-    <!--<p>Watch a video instead</p>-->
-    <!--<iframe-->
-            <!--width="420"-->
-            <!--height="315"-->
-            <!--src="https://www.youtube.com/embed/NN75im_us4k?autoplay=1"-->
-            <!--frameborder="0"-->
-            <!--allowfullscreen="allowfullscreen"-->
-    <!--&gt;-->
-    <!--</iframe>-->
-<!--</body>-->
-<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/header :: header('error')"></head>
+
+<body>
+
+    <h1>Page not found!!</h1>
+    <div>
+    <img src="/static/img/error-image.png"/>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
