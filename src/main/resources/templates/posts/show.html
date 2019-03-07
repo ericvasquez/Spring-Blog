@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/header :: header('Post Details')"></head>
+<head th:replace="fragments/header :: header(${post.title})"></head>
 <body>
 
     <div th:replace="fragments/navbar :: navbar"></div>
@@ -19,5 +19,7 @@
         </form>
     </main>
 
+
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
